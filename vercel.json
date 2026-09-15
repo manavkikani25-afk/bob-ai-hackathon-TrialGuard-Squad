@@ -1,12 +1,9 @@
 {
-  "functions": {
-    "api/main.py": {
-      "includeFiles": "src/frontend/dist/**"
-    }
-  },
+  "buildCommand": "npm install --prefix src/frontend && npm run build --prefix src/frontend",
+  "outputDirectory": "src/frontend/dist",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/api/:path*",
       "destination": "/api/main.py"
     }
   ]
