@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "api/main.py": {
+      "includeFiles": "src/frontend/dist/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",

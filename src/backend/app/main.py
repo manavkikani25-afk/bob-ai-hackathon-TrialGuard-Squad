@@ -46,11 +46,14 @@ def health_check():
         "documentation": "/docs"
     }
 
-# Locate static frontend directory for single unified serving
+root_dir = os.path.dirname(os.path.dirname(BASE_DIR))
 possible_dist_dirs = [
+    os.path.join(root_dir, "src", "frontend", "dist"),
+    os.path.join(root_dir, "dist"),
     os.path.join(BASE_DIR, "dist"),
     os.path.join(os.path.dirname(BASE_DIR), "dist"),
-    os.path.join(os.path.dirname(BASE_DIR), "src", "frontend", "dist"),
+    os.path.abspath("src/frontend/dist"),
+    os.path.abspath("dist"),
 ]
 
 dist_dir = None
