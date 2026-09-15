@@ -35,7 +35,7 @@ app.include_router(deviations.router)
 app.include_router(capa.router)
 app.include_router(copilot.router)
 
-@app.get("/")
+@app.get("/api/health")
 def root():
     return {
         "system": "TrialGuard AI",
