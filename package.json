@@ -3,6 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "npm --prefix src/frontend install && npm --prefix src/frontend run build"
+    "build": "npm --prefix src/frontend install && npm --prefix src/frontend run build && node -e \"require('fs').cpSync('src/frontend/dist', 'dist', {recursive: true})\""
   }
 }
