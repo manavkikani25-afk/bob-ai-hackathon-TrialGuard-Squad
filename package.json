@@ -2,7 +2,10 @@
   "name": "trialguard-ai-monorepo",
   "private": true,
   "version": "1.0.0",
+  "workspaces": [
+    "src/frontend"
+  ],
   "scripts": {
-    "build": "npm --prefix src/frontend install && npm --prefix src/frontend run build && node -e \"require('fs').cpSync('src/frontend/dist', 'dist', {recursive: true})\""
+    "build": "npm run build --workspace=src/frontend && node -e \"require('fs').cpSync('src/frontend/dist', 'dist', {recursive: true})\""
   }
 }
