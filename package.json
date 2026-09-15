@@ -1,0 +1,8 @@
+{
+  "name": "trialguard-ai-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd src/frontend && npm install && npm run build"
+  }
+}
