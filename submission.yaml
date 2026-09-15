@@ -1,0 +1,53 @@
+# =============================================================================
+# HACKATHON SUBMISSION METADATA
+# =============================================================================
+team:
+  name: "TrialGuard Squad"
+  track: "AI"
+  lead:
+    name: "Daksh Soni"
+    email: "25cs102@charusat.edu.in"
+  members:
+    - name: "Daksh Soni (Team Lead)"
+      email: "25cs102@charusat.edu.in"
+    - name: "Visham"
+    - name: "Het"
+    - name: "Manav"
+
+submission:
+  title: "TrialGuard AI — Clinical Trial Risk Monitor & Protocol Deviation Detector"
+
+  problem_statement: >
+    Clinical trial sponsors and site monitors face critical risks when protocol deviations—such as missed visits, incorrect drug dosing, prohibited medication usage, and omitted safety lab draws—go undetected for weeks. Manual auditing leads to regulatory non-compliance, patient safety hazards, costly trial delays, and compromised trial data integrity.
+
+  solution_summary: >
+    TrialGuard AI is an automated clinical trial risk monitor and decision-support system. It automatically ingests synthetic patient visit data, runs a protocol rule engine to detect and classify deviations by severity, calculates a 0–100 site risk intelligence score with explainable contributing drivers, drafts editable CAPA-ready reports, and provides an interactive IBM Bob AI Copilot.
+
+  key_features:
+    - "Automated Protocol Rule Engine detecting missed visits, late visits, incorrect dosing, prohibited medications, and omitted lab tests"
+    - "Prototype Severity Classification labeling protocol deviations into Major, Minor, and Administrative categories"
+    - "Explainable Site Risk Scoring algorithm computing 0–100 risk scores, risk levels (Low to Critical), and top contributing risk drivers"
+    - "Interactive IBM Bob AI Copilot grounded in clinical trial database telemetry, with watsonx.ai REST integration and deterministic fallback"
+    - "CAPA Report Generator creating structured, editable Corrective & Preventive Action plans with client-side PDF export"
+
+  tech_stack:
+    languages: ["Python", "TypeScript", "SQL", "HTML/CSS"]
+    frameworks: ["FastAPI", "React", "Vite", "Tailwind CSS", "SQLAlchemy", "Pydantic"]
+    ibm_technologies: ["watsonx.ai", "IBM Bob AI Copilot"]
+    databases: ["SQLite"]
+    other: ["Recharts", "jsPDF", "GitHub Actions"]
+
+  what_we_are_most_proud_of: >
+    The seamless end-to-end integration from raw patient visit telemetry to explainable site risk scoring, data-grounded AI Copilot answers, and instant CAPA PDF report generation.
+
+  known_limitations: >
+    This is a prototype decision-support tool utilizing synthetic clinical trial data. Severity classification rules and risk scoring thresholds are prototype/demo metrics and do not constitute official regulatory determinations.
+
+artifacts:
+  source_code: "src/"
+  setup_guide: "docs/setup-guide.md"
+  architecture_doc: "docs/architecture.md"
+  demo_video: "demo/demo-video-link.txt"
+  live_demo: "demo/live-demo-url.txt"
+  screenshots: "demo/screenshots/"
+  presentation: "presentation/"
