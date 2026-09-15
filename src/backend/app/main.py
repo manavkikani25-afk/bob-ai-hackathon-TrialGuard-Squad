@@ -1,6 +1,9 @@
-from fastapi import FastAPI
+import os
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from .database.session import Base, engine, SessionLocal
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from .database.session import Base, engine, SessionLocal, BASE_DIR
 from .seed.seed_data import seed_database
 from .services.risk_scoring import recalculate_site_risk_scores
 from .api import dashboard, sites, deviations, capa, copilot
@@ -36,9 +39,36 @@ app.include_router(capa.router)
 app.include_router(copilot.router)
 
 @app.get("/api/health")
-def root():
+def health_check():
     return {
         "system": "TrialGuard AI",
         "status": "online",
         "documentation": "/docs"
     }
+
+# Locate static frontend directory for single unified serving
+possible_dist_dirs = [
+    os.path.join(BASE_DIR, "dist"),
+    os.path.join(os.path.dirname(BASE_DIR), "dist"),
+    os.path.join(os.path.dirname(BASE_DIR), "src", "frontend", "dist"),
+]
+
+dist_dir = None
+for d in possible_dist_dirs:
+    if os.path.exists(d) and os.path.exists(os.path.join(d, "index.html")):
+        dist_dir = d
+        break
+
+if dist_dir:
+    assets_dir = os.path.join(dist_dir, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="static")
+
+    @app.get("/{full_path:path}")
+    def serve_frontend(full_path: str):
+        if full_path.startswith("api/"):
+            raise HTTPException(status_code=404, detail="API route not found")
+        index_file = os.path.join(dist_dir, "index.html")
+        if os.path.exists(index_file):
+            return FileResponse(index_file)
+        raise HTTPException(status_code=404, detail="Frontend index.html not found")
